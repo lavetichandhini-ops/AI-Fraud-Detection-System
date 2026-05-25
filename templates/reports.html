@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Transaction Reports</title>
+
+    <style>
+
+        body{
+            background:#0f172a;
+            color:white;
+            font-family:Arial;
+            padding:30px;
+        }
+
+        h1{
+            text-align:center;
+            margin-bottom:30px;
+        }
+
+        .table{
+            width:100%;
+            border-collapse:collapse;
+            background:white;
+            color:black;
+        }
+
+        .table th,
+        .table td{
+            border:1px solid gray;
+            padding:10px;
+            text-align:center;
+        }
+
+        .table th{
+            background:#2563eb;
+            color:white;
+        }
+
+        a{
+            display:inline-block;
+            margin-top:20px;
+            padding:12px 20px;
+            background:#2563eb;
+            color:white;
+            text-decoration:none;
+            border-radius:8px;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <h1>Transaction Reports</h1>
+
+    {{ tables|safe }}
+
+    <center>
+        <a href="/dashboard">Back to Dashboard</a>
+    </center>
+
+</body>
+
+</html>

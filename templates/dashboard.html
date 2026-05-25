@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>AI Fraud Dashboard</title>
+
+    <style>
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:Arial, sans-serif;
+        }
+
+        body{
+            background:#0f172a;
+            color:white;
+            display:flex;
+        }
+
+        /* ================= SIDEBAR ================= */
+
+        .sidebar{
+
+            width:240px;
+            height:100vh;
+
+            background:#020617;
+
+            position:fixed;
+            left:0;
+            top:0;
+
+            padding:30px 20px;
+
+            overflow-y:auto;
+        }
+
+        .sidebar h1{
+
+            color:#38bdf8;
+
+            margin-bottom:40px;
+
+            font-size:32px;
+
+            text-align:center;
+        }
+
+        .sidebar a{
+
+            display:block;
+
+            text-decoration:none;
+
+            background:#1e293b;
+
+            color:white;
+
+            padding:15px;
+
+            border-radius:12px;
+
+            margin-bottom:18px;
+
+            transition:0.3s;
+
+            font-size:18px;
+
+            text-align:center;
+        }
+
+        .sidebar a:hover{
+
+            background:#2563eb;
+        }
+
+        /* ================= MAIN CONTENT ================= */
+
+        .main-content{
+
+            margin-left:240px;
+
+            width:calc(100% - 240px);
+
+            padding:25px;
+        }
+
+        /* ================= HEADER ================= */
+
+        .header{
+
+            margin-bottom:30px;
+        }
+
+        .header h1{
+
+            font-size:42px;
+
+            margin-bottom:10px;
+        }
+
+        .header p{
+
+            color:#cbd5e1;
+
+            font-size:18px;
+        }
+
+        /* ================= CARDS ================= */
+
+        .cards{
+
+            display:grid;
+
+            grid-template-columns:
+            repeat(auto-fit,minmax(220px,1fr));
+
+            gap:20px;
+
+            margin-bottom:30px;
+        }
+
+        .card{
+
+            background:#1e293b;
+
+            padding:25px;
+
+            border-radius:20px;
+
+            text-align:center;
+
+            box-shadow:0px 0px 10px rgba(0,0,0,0.2);
+
+            transition:0.3s;
+        }
+
+        .card:hover{
+
+            transform:translateY(-5px);
+        }
+
+        .card h3{
+
+            color:#cbd5e1;
+
+            margin-bottom:15px;
+
+            font-size:22px;
+        }
+
+        .card h2{
+
+            font-size:34px;
+        }
+
+        .fraud{
+
+            color:#ef4444;
+        }
+
+        .safe{
+
+            color:#22c55e;
+        }
+
+        .prob{
+
+            color:#f59e0b;
+        }
+
+        .metric{
+
+            color:#38bdf8;
+        }
+
+        /* ================= OVERVIEW BOX ================= */
+
+        .overview-box{
+
+            background:#1e293b;
+
+            padding:30px;
+
+            border-radius:20px;
+
+            margin-top:20px;
+
+            line-height:1.8;
+        }
+
+        .overview-box h2{
+
+            margin-bottom:20px;
+
+            font-size:30px;
+        }
+
+        .overview-box p{
+
+            color:#cbd5e1;
+
+            font-size:18px;
+        }
+
+        /* ================= RESPONSIVE ================= */
+
+        @media(max-width:900px){
+
+            body{
+                flex-direction:column;
+            }
+
+            .sidebar{
+
+                width:100%;
+                height:auto;
+
+                position:relative;
+
+                display:flex;
+
+                flex-wrap:wrap;
+
+                gap:10px;
+
+                justify-content:center;
+            }
+
+            .sidebar h1{
+
+                width:100%;
+
+                text-align:center;
+            }
+
+            .sidebar a{
+
+                width:180px;
+                text-align:center;
+            }
+
+            .main-content{
+
+                margin-left:0;
+
+                width:100%;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <!-- ================= SIDEBAR ================= -->
+
+    <div class="sidebar">
+
+        <h1>AI Dashboard</h1>
+
+        <a href="/dashboard">
+            Dashboard
+        </a>
+
+        <a href="/analytics">
+            Fraud Analytics
+        </a>
+
+        <a href="/risk">
+            Risk Monitoring
+        </a>
+
+        <a href="/reports">
+            Transaction Reports
+        </a>
+
+        <a href="/">
+            Home Page
+        </a>
+
+    </div>
+
+    <!-- ================= MAIN CONTENT ================= -->
+
+    <div class="main-content">
+
+        <!-- Header -->
+
+        <div class="header">
+
+            <h1>
+                Fraud Detection Dashboard
+            </h1>
+
+            <p>
+                AI-powered financial fraud analytics
+                and transaction monitoring system.
+            </p>
+
+        </div>
+
+        <!-- MAIN ANALYTICS -->
+
+        <div class="cards">
+
+            <div class="card">
+
+                <h3>Total Transactions</h3>
+
+                <h2>{{ total }}</h2>
+
+            </div>
+
+            <div class="card">
+
+                <h3>Fraud Transactions</h3>
+
+                <h2 class="fraud">
+
+                    {{ fraud }}
+
+                </h2>
+
+            </div>
+
+            <div class="card">
+
+                <h3>Legitimate Transactions</h3>
+
+                <h2 class="safe">
+
+                    {{ legitimate }}
+
+                </h2>
+
+            </div>
+
+            <div class="card">
+
+                <h3>Fraud Percentage</h3>
+
+                <h2 class="prob">
+
+                    {{ probability }}%
+
+                </h2>
+
+            </div>
+
+        </div>
+
+        <!-- ML PERFORMANCE -->
+
+        <div class="cards">
+
+            <div class="card">
+
+                <h3>Model Accuracy</h3>
+
+                <h2 class="metric">
+
+                    {{ accuracy }}%
+
+                </h2>
+
+            </div>
+
+            <div class="card">
+
+                <h3>Precision</h3>
+
+                <h2 class="metric">
+
+                    {{ precision }}%
+
+                </h2>
+
+            </div>
+
+            <div class="card">
+
+                <h3>Recall</h3>
+
+                <h2 class="metric">
+
+                    {{ recall }}%
+
+                </h2>
+
+            </div>
+
+            <div class="card">
+
+                <h3>F1-Score</h3>
+
+                <h2 class="metric">
+
+                    {{ f1score }}%
+
+                </h2>
+
+            </div>
+
+        </div>
+
+        <!-- OVERVIEW -->
+
+        <div class="overview-box">
+
+            <h2>System Overview</h2>
+
+            <p>
+
+                This AI-powered fraud detection platform
+                analyzes uploaded financial transaction datasets
+                using Machine Learning algorithms to identify
+                suspicious activities and potential fraudulent
+                behavior.
+
+            </p>
+
+            <br>
+
+            <p>
+
+                The platform provides transaction analytics,
+                fraud probability monitoring, risk assessment,
+                and detailed reporting through an interactive
+                dashboard interface.
+
+            </p>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>

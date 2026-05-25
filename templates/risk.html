@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Risk Monitoring</title>
+
+    <style>
+
+        body{
+            background:#0f172a;
+            font-family:Arial;
+            color:white;
+            margin:0;
+            padding:0;
+        }
+
+        .container{
+            width:70%;
+            margin:auto;
+            padding:50px;
+            text-align:center;
+        }
+
+        h1{
+            font-size:50px;
+            margin-bottom:50px;
+        }
+
+        .risk-card{
+            background:#1e293b;
+            padding:50px;
+            border-radius:20px;
+            box-shadow:0px 0px 15px rgba(0,0,0,0.3);
+        }
+
+        .probability{
+            font-size:80px;
+            margin:30px 0;
+            color:#38bdf8;
+        }
+
+        .risk-text{
+            font-size:45px;
+            font-weight:bold;
+        }
+
+        .low{
+            color:orange;
+        }
+
+        .medium{
+            color:yellow;
+        }
+
+        .high{
+            color:red;
+        }
+
+        .alert-box{
+            margin-top:40px;
+            background:#111827;
+            padding:25px;
+            border-radius:15px;
+            font-size:22px;
+        }
+
+        .btn{
+            display:inline-block;
+            margin-top:40px;
+            padding:14px 28px;
+            background:#2563eb;
+            color:white;
+            text-decoration:none;
+            border-radius:10px;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>Risk Monitoring</h1>
+
+        <div class="risk-card">
+
+            <h2>Fraud Probability</h2>
+
+            <div class="probability">
+                {{ probability }}%
+            </div>
+
+            <div class="risk-text">
+
+                {% if risk == "HIGH RISK" %}
+
+                    <span class="high">
+                        {{ risk }}
+                    </span>
+
+                {% elif risk == "MEDIUM RISK" %}
+
+                    <span class="medium">
+                        {{ risk }}
+                    </span>
+
+                {% else %}
+
+                    <span class="low">
+                        {{ risk }}
+                    </span>
+
+                {% endif %}
+
+            </div>
+
+            <div class="alert-box">
+
+                ⚠ AI Risk Monitoring System analyzing
+                suspicious financial transaction patterns.
+
+            </div>
+
+        </div>
+
+        <a href="/dashboard" class="btn">
+            Back to Dashboard
+        </a>
+
+    </div>
+
+</body>
+
+</html>
